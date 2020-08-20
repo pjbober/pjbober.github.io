@@ -1,0 +1,43 @@
+<html>
+<head>
+	<script type="text/javascript">
+
+		function shuffle(array) {
+		  var currentIndex = array.length, temporaryValue, randomIndex;
+
+		  // While there remain elements to shuffle...
+		  while (0 !== currentIndex) {
+
+		    // Pick a remaining element...
+		    randomIndex = Math.floor(Math.random() * currentIndex);
+		    currentIndex -= 1;
+
+		    // And swap it with the current element.
+		    temporaryValue = array[currentIndex];
+		    array[currentIndex] = array[randomIndex];
+		    array[randomIndex] = temporaryValue;
+		  }
+
+		  return array;
+		}
+
+		function generatePairs() {
+			var persons = document.getElementById("persons").value.split('\n');
+			shuffle(persons);
+			result = "";
+
+			for(i = 0; i < persons.length - 1; i ++) {
+				result += persons[i] + " --> " + persons[i + 1] + "<br />";
+			}
+			result += persons[persons.length - 1] + " --> " + persons[0] + "<br />";
+			
+			document.getElementById("pairs").innerHTML = result;
+		}
+	</script>
+</head>
+<textarea id="persons" cols="40" rows="10">
+</textarea>
+<div id="pairs">
+</div>
+<button onclick="generatePairs()">Pair up</button>
+</html>
